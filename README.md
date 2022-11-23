@@ -14,9 +14,9 @@ Once CreateJRE.bat is run, this program is able to run independently on any Wind
 
 ## Project Description
 ### Summary
-This application was created as a part of my Certificate IV in Information Technology (Programming) at South Metropolitan TAFE in 2022. This program uses Customer class objects to store an indefinite amount of customers where memory permits with five attributes; Name, Mobile Number and Email (placeholder customer names, emails and mobile numbers were used).
+This application was created as a part of my Certificate IV in Information Technology (Programming) at South Metropolitan TAFE in 2022. The program is written using a Model-View-Controller pattern which ensures that functionality of the program is separated between different elements.
 
-A third party MySQL driver was used to connect to a MySQL server so that customer information inside the *customer* table can populate a table. All graphical user interface (GUI) elements are driven by JAVAFX, which enables a user to view, insert, edit and delete customers without having to manually execute SQL queries.
+This program uses Customer class objects as the model to store an indefinite amount of customers where memory permits with five attributes; Name, Mobile Number and Email (placeholder customer names, emails and mobile numbers were used). This project implements JAVAFX as the view which is used to provide a graphical user interface for the program, and JDBC as the controller which is used to manipulate a MySQL database. 
 
 ### SQL Technical Details
 The program has the option to create a new *smtbiz* database.
