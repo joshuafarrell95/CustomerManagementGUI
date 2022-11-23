@@ -38,7 +38,7 @@ CREATE TABLE customer (
 );
 ```
 
-Placeholder information is inserted into the *customer* table to demonstrate the program.
+Placeholder information is inserted into the *customer* table to demonstrate the program. Note that only the Name, Email and Mobile of each placeholder customer is inserted into the database, however for each customer that is added, an ID is assigned to the customer, then is auto-incremented for the next customer.
 ```SQL
 INSERT INTO customer
 	(Name, Email, Mobile)
