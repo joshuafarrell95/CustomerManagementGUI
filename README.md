@@ -8,8 +8,8 @@ Before running this program, start your MySQL database engine. You must also hav
 Your environment variables must point to the correct directories and be set up for your user profile (not your system) so that the custom Java Runtime Environment can be created.
 | Environment Variable | Directory                        | Example                                                       |
 | -------------------- | -------------------------------- | ------------------------------------------------------------- |
-| *PATH_TO_FX*         | your JavaFX-SDK lib directory    | e.g, C:\Users\[your username]\Documents\javafx-sdk-18.0.2\lib |
-| *PATH_TO_FX_JMOD*    | your JavaFX-JMODS root directory | e.g., C:\Users\[your username]\Documents\javafx-jmods-18.0.2  |
+| *PATH_TO_FX*         | your JavaFX-SDK lib directory    | e.g, C:\Users\\*[your username]*\Documents\javafx-sdk-18.0.2\lib |
+| *PATH_TO_FX_JMOD*    | your JavaFX-JMODS root directory | e.g., C:\Users\\*[your username]*\Documents\javafx-jmods-18.0.2  |
 
 Once CreateJRE.bat is run, this program is able to run independently on any Windows system as long as you copy the directories "app" (containing the program) and "jre" (containing the custom Java Runtime Environment that runs the program), and the batch file Launch.bat (which is a launcher that runs the program using the custom JRE).
 
