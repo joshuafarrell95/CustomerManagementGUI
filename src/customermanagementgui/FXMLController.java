@@ -13,15 +13,21 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+//import java.io.IOException;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
 
 public class FXMLController implements Initializable {
 
-    private final boolean IS_LIVE_LIST_ENABLED = false;
+    private final boolean IS_LIVE_LIST_ENABLED = true;
 	
 	/* Observable ArrayList<Customer> used for the TableView object */
     private ObservableList<Customer> customers = FXCollections.observableArrayList(CustomerDAO.getAllCustomers());
@@ -138,8 +144,14 @@ public class FXMLController implements Initializable {
             alert.show();
             
             System.out.println("ERROR: " + title + " - " + message);
+		//} catch (InvocationTargetException ex) {
+		//	clearTextBoxes("Update");
+		//
+		//	String title = "Invocation Target Exception";
+		//	String message = "Search text box must not be blank";
+		//	
+		//	displayAlert(title, message);
         }
-        
     }
 
     @FXML
@@ -156,16 +168,11 @@ public class FXMLController implements Initializable {
         } catch (NullPointerException ex) {         // Used if the customer does not exist in the database
             clearTextBoxes("Update");
             
-            Alert alert = new Alert(AlertType.ERROR);
             String title = "Null Pointer Exception";
             String message = "Customer id is not found in database.";
             
-            
-            alert.setTitle(title);
-            alert.setContentText(message);
-            alert.show();
-            
-            System.out.println("ERROR: " + title + " - " + message);
+            displayAlert(title, message);
+			refreshList();
         } finally {
             clearTextBoxes("Search");
         }
@@ -194,6 +201,30 @@ public class FXMLController implements Initializable {
             refreshList();
         }
     }
+	
+	@FXML
+	private void tblCustomers_onMouseClicked(MouseEvent event) {
+		try {
+			Customer c = tblCustomers.getSelectionModel().getSelectedItem();
+			
+			clearTextBoxes("Update");
+			
+			txtUpdateID.setText(Integer.toString(c.getId()));
+			txtUpdateName.setText(c.getName());
+			txtUpdateEmail.setText(c.getEmail());
+			txtUpdateMobile.setText(c.getMobile());		
+        } catch (NullPointerException ex) {         // Used if the customer does not exist in the database
+            clearTextBoxes("Update");
+            
+            String title = "Null Pointer Exception";
+            String message = "Customer id is not found in database.";
+            
+            displayAlert(title, message);
+			refreshList();
+        } finally {
+            //clearTextBoxes("Search");
+        }
+	}
     
 	/* Utilities */
     @Override
@@ -203,6 +234,7 @@ public class FXMLController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
         colMobile.setCellValueFactory(new PropertyValueFactory<Customer, String>("mobile"));
     
+		
         if (IS_LIVE_LIST_ENABLED) {
             refreshList();
         }
@@ -234,4 +266,18 @@ public class FXMLController implements Initializable {
             } default -> {}
         }
     }
+	
+	private void displayAlert(String title, String message) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle(title);
+            alert.setContentText(message);
+            alert.show();
+            
+            System.out.println("ERROR: " + title + " - " + message);
+	}
+	
+	//private void exportRecord(Customer customer) throws IOException {
+		
+	
+	//}
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customermanagementgui.FXMLController">
+<Pane maxHeight="493.0" maxWidth="864.0" minHeight="493.0" minWidth="864.0" prefHeight="493.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customermanagementgui.FXMLController">
    <children>
       <Button fx:id="btnCreateDB" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#btnCreateDB_onMouseClicked" text="(Re) Create Database/Table/Records" />
       <TextField fx:id="txtAddName" layoutX="63.0" layoutY="65.0" prefWidth="207.0" promptText="Name" />
@@ -24,7 +24,7 @@
       <Label layoutX="677.0" layoutY="106.0" text="Search before update" />
       <Button fx:id="btnUpdate" layoutX="774.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#btnUpdate_onMouseClicked" text="Update" />
       <Button fx:id="btnShowAllCustomers" layoutX="371.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#btnShowAllCustomers_onMouseClicked" text="Show All Customers" />
-      <TableView fx:id="tblCustomers" layoutX="52.0" layoutY="224.0" prefHeight="257.0" prefWidth="780.0">
+      <TableView fx:id="tblCustomers" layoutX="52.0" layoutY="224.0" prefHeight="257.0" onMouseClicked="#tblCustomers_onMouseClicked" prefWidth="780.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="colName" prefWidth="220" text="Name" />
