@@ -49,3 +49,9 @@ VALUES
 	("Jane Smith", "Jane.Smith@example.com", "0499887766"),
 	("John Citizen", "John.Citizen@example.com", "0412349876");
 ```
+
+## Version Control
+| Version | Date        | Reason and comment                                                                                         |
+| ------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| 1.10    | 18 Jun 2023 | Enabled live table update and added code to add record to update textboxes when record in table is clicked |
+| 1.00    | 22 Nov 2022 | Initial version                                                                                            |
