@@ -37,9 +37,9 @@ public class CustomerDAO {
             stmt.executeUpdate(query);
             query = """
                     CREATE TABLE customer (
-                    	ID INTEGER NOT NULL AUTO_INCREMENT,
-                    	Name VARCHAR(32),
-                    	Email VARCHAR(52),
+                        ID INTEGER NOT NULL AUTO_INCREMENT,
+                        Name VARCHAR(32),
+                        Email VARCHAR(52),
                         Mobile VARCHAR(32),
                         PRIMARY KEY(ID)
                     );
@@ -47,7 +47,7 @@ public class CustomerDAO {
             stmt.executeUpdate(query);
             query = """
                     INSERT INTO customer
-                    	(Name, Email, Mobile)
+                        (Name, Email, Mobile)
                     VALUES
                         ("Joshua Farrell", "Joshua.Farrell@audit.wa.gov.au", "0412345678"),
                         ("Arthur Dent", "Arthur.Dent@audit.wa.gov.au", "0424242424"),
