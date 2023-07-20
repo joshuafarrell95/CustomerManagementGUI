@@ -21,6 +21,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.event.ActionEvent;
 //import java.io.IOException;
 //import java.nio.file.Files;
 //import java.nio.file.Path;
@@ -34,19 +35,13 @@ public class FXMLController implements Initializable {
     
     /* GUI fields */
     @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnCreateDB;
+    private Button btnSearchID;
 
     @FXML
     private Button btnDeleteID;
 
     @FXML
-    private Button btnSearchID;
-
-    @FXML
-    private Button btnShowAllCustomers;
+    private Button btnAdd;
 
     @FXML
     private Button btnUpdate;
@@ -67,36 +62,29 @@ public class FXMLController implements Initializable {
     private TableColumn<Customer, String> colMobile;
     
     @FXML
-    private TextField txtAddEmail;
+    private TextField txtID;
 
     @FXML
-    private TextField txtAddMobile;
+    private TextField txtName;
 
     @FXML
-    private TextField txtAddName;
+    private TextField txtEmail;
 
     @FXML
-    private TextField txtSearchDeleteID;
-
-    @FXML
-    private TextField txtUpdateEmail;
-
-    @FXML
-    private TextField txtUpdateID;
-
-    @FXML
-    private TextField txtUpdateMobile;
-
-    @FXML
-    private TextField txtUpdateName;
+    private TextField txtMobile;
     
     /* onMouseClicked Events */
     @FXML
     private void btnAdd_onMouseClicked(MouseEvent event) {
-        String tempName = txtAddName.getText();
-        String tempEmail = txtAddEmail.getText();
-        String tempMobile = txtAddMobile.getText();
+		String tempID = txtID.getText();
+        String tempName = txtName.getText();
+        String tempEmail = txtEmail.getText();
+        String tempMobile = txtMobile.getText();
         
+		if (tempID.isEmpty()){
+		}
+		
+		clearTextBoxes("Delete"); /* Clear ID text box */
         CustomerDAO.insertCustomer(tempName, tempEmail, tempMobile);
         clearTextBoxes("Add");
         
@@ -106,7 +94,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void btnCreateDB_onMouseClicked(MouseEvent event) {
+    private void menuFileEditCreateDB_onAction(ActionEvent event) {
         try {
             CustomerDAO.createaCustomerDB();
             if (IS_LIVE_LIST_ENABLED) {
@@ -128,7 +116,7 @@ public class FXMLController implements Initializable {
     @FXML
     private void btnDeleteID_onMouseClicked(MouseEvent event) {
         try {
-            int tempID = Integer.valueOf(txtSearchDeleteID.getText());
+            int tempID = Integer.valueOf(txtID.getText());
             
             CustomerDAO.deleteCustomerByID(tempID);
             if (IS_LIVE_LIST_ENABLED) {
@@ -144,14 +132,14 @@ public class FXMLController implements Initializable {
     @FXML
     private void btnSearchID_onMouseClicked(MouseEvent event) {
         try {
-            int tempID = Integer.valueOf(txtSearchDeleteID.getText());
+            int tempID = Integer.valueOf(txtID.getText());
             
             Customer c = CustomerDAO.searchCustomerByID(tempID);
             
-            txtUpdateID.setText(Integer.toString(tempID));
-            txtUpdateName.setText(c.getName());
-            txtUpdateEmail.setText(c.getEmail());
-            txtUpdateMobile.setText(c.getMobile());
+            txtID.setText(Integer.toString(tempID));
+            txtName.setText(c.getName());
+            txtEmail.setText(c.getEmail());
+            txtMobile.setText(c.getMobile());
         } catch (NullPointerException ex) {         // Used if the customer does not exist in the database
             clearTextBoxes("Update");
             
@@ -166,7 +154,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    private void btnShowAllCustomers_onMouseClicked(MouseEvent event) {
+    private void menuFileEditForceUpdate_onAction(ActionEvent event) {
         refreshList();
     }
 
@@ -174,11 +162,11 @@ public class FXMLController implements Initializable {
     private void btnUpdate_onMouseClicked(MouseEvent event) {
         int tempId = -1;
         try {
-            tempId = Integer.valueOf(txtUpdateID.getText());
+            tempId = Integer.valueOf(txtID.getText());
         } catch (NumberFormatException ex) {}
-        String tempName = txtUpdateName.getText();
-        String tempEmail = txtUpdateEmail.getText();
-        String tempMobile = txtUpdateMobile.getText();
+        String tempName = txtName.getText();
+        String tempEmail = txtEmail.getText();
+        String tempMobile = txtMobile.getText();
         
         if (tempId > 0) {
             CustomerDAO.updateCustomer(tempId, tempName, tempEmail, tempMobile);
@@ -196,10 +184,10 @@ public class FXMLController implements Initializable {
             
             clearTextBoxes("Update");
             
-            txtUpdateID.setText(Integer.toString(c.getId()));
-            txtUpdateName.setText(c.getName());
-            txtUpdateEmail.setText(c.getEmail());
-            txtUpdateMobile.setText(c.getMobile());     
+            txtID.setText(Integer.toString(c.getId()));
+            txtName.setText(c.getName());
+            txtEmail.setText(c.getEmail());
+            txtMobile.setText(c.getMobile());     
         } catch (NullPointerException ex) {         // Used if the customer does not exist in the database
             clearTextBoxes("Update");
             
@@ -212,6 +200,21 @@ public class FXMLController implements Initializable {
             //clearTextBoxes("Search");
         }
     }
+	
+	@FXML
+	private void menuFileClose_onAction(ActionEvent event) {
+		
+	}
+	
+	@FXML
+	private void checkMenuFileHelpAbout_onAction(ActionEvent event) {
+	
+	}
+	
+	@FXML
+	private void menuFileHelpAbout_onAction(ActionEvent event) {
+	
+	}
     
     /* Utilities */
     @Override
@@ -236,16 +239,16 @@ public class FXMLController implements Initializable {
     private void clearTextBoxes(String mode) {
         switch (mode) {
             case "Add" -> {
-                txtAddName.clear();
-                txtAddEmail.clear();
-                txtAddMobile.clear();
+                txtName.clear();
+                txtEmail.clear();
+                txtMobile.clear();
             } case "Delete", "Search" -> {
-                txtSearchDeleteID.clear();
+                txtID.clear();
             } case "Update" -> {
-                txtUpdateID.clear();
-                txtUpdateName.clear();
-                txtUpdateEmail.clear();
-                txtUpdateMobile.clear();
+                txtID.clear();
+                txtName.clear();
+                txtEmail.clear();
+                txtMobile.clear();
             } case "All" -> {
                 clearTextBoxes("Add");
                 clearTextBoxes("Delete");

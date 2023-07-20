@@ -1,36 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="493.0" maxWidth="864.0" minHeight="493.0" minWidth="864.0" prefHeight="493.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customermanagementgui.FXMLController">
-   <children>
-      <Button fx:id="btnCreateDB" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#btnCreateDB_onMouseClicked" text="(Re) Create Database/Table/Records" />
-      <TextField fx:id="txtAddName" layoutX="63.0" layoutY="65.0" prefWidth="207.0" promptText="Name" />
-      <TextField fx:id="txtAddEmail" layoutX="295.0" layoutY="65.0" prefWidth="207.0" promptText="Email" />
-      <TextField fx:id="txtAddMobile" layoutX="520.0" layoutY="65.0" prefHeight="25.0" prefWidth="207.0" promptText="Mobile" />
-      <Button fx:id="btnAdd" layoutX="761.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#btnAdd_onMouseClicked" text="Add" />
-      <TextField fx:id="txtSearchDeleteID" layoutX="63.0" layoutY="102.0" prefHeight="25.0" prefWidth="52.0" promptText="ID" />
-      <TextField fx:id="txtUpdateID" editable="false" layoutX="63.0" layoutY="147.0" prefHeight="25.0" prefWidth="52.0" promptText="ID" />
-      <TextField fx:id="txtUpdateName" layoutX="126.0" layoutY="147.0" prefWidth="207.0" promptText="Name" />
-      <TextField fx:id="txtUpdateEmail" layoutX="342.0" layoutY="147.0" prefWidth="207.0" promptText="Email" />
-      <TextField fx:id="txtUpdateMobile" layoutX="554.0" layoutY="147.0" prefHeight="25.0" prefWidth="207.0" promptText="Mobile" />
-      <Button fx:id="btnDeleteID" layoutX="126.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#btnDeleteID_onMouseClicked" text="Delete" />
-      <Button fx:id="btnSearchID" layoutX="204.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#btnSearchID_onMouseClicked" text="Search" />
-      <Label layoutX="677.0" layoutY="106.0" text="Search before update" />
-      <Button fx:id="btnUpdate" layoutX="774.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#btnUpdate_onMouseClicked" text="Update" />
-      <Button fx:id="btnShowAllCustomers" layoutX="371.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#btnShowAllCustomers_onMouseClicked" text="Show All Customers" />
-      <TableView fx:id="tblCustomers" layoutX="52.0" layoutY="224.0" prefHeight="257.0" onMouseClicked="#tblCustomers_onMouseClicked" prefWidth="780.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="430.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="customermanagementgui.FXMLController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menuBar">
+              <menus>
+                <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="menuFileClose" mnemonicParsing="false" onAction="#menuFileClose_onAction" text="Close" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="menuEdit" mnemonicParsing="false" text="Edit">
+                    <items>
+                      <MenuItem fx:id="menuEditCreateDB" mnemonicParsing="false" onAction="#menuFileEditCreateDB_onAction" text="(Re) Create Database/Table/Records" />
+                      <MenuItem fx:id="menuEditForceUpdate" mnemonicParsing="false" onAction="#menuFileEditForceUpdate_onAction" text="Force Update Table from Database" />
+					  <CheckMenuItem fx:id="checkMenuEditEnableUpdate" mnemonicParsing="false" onAction="#checkMenuFileHelpAbout_onAction" text="Enable/Disable Live Update" />
+					</items>
+                  </Menu>
+                <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menuHelpAbout" mnemonicParsing="false" onAction="#menuFileHelpAbout_onAction" text="About" />
+				  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox spacing="8.0">
+               <children>
+                  <TextField fx:id="txtID" minWidth="50.0" prefHeight="25.0" prefWidth="50.0" promptText="ID" />
+                  <TextField fx:id="txtName" promptText="Name" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="txtEmail" promptText="Email" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="txtMobile" promptText="Mobile" HBox.hgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="8.0">
+               <children>
+                  <Button fx:id="btnSearchID" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#btnSearchID_onMouseClicked" prefHeight="25.0" prefWidth="80.0" text="🔎 Search" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnDeleteID" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#btnDeleteID_onMouseClicked" prefHeight="25.0" prefWidth="80.0" text="🗑 Delete" HBox.hgrow="ALWAYS" />
+                  <Region prefHeight="0.0" prefWidth="344.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnAdd" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#btnAdd_onMouseClicked" prefWidth="80.0" text="➕ Add" />
+                  <Button fx:id="btnUpdate" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#btnUpdate_onMouseClicked" prefWidth="80.0" text="✍ Update" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <DialogPane fx:id="dialogPane" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="780.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="8.0" />
+         </padding></DialogPane>
+   </bottom>
+   <center>
+      <TableView fx:id="tblCustomers" layoutX="200.0" layoutY="200.0" onMouseClicked="#tblCustomers_onMouseClicked">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="colName" prefWidth="220" text="Name" />
-          <TableColumn fx:id="colEmail" prefWidth="220" text="Email" />
-          <TableColumn fx:id="colMobile" prefWidth="220" text="Mobile" />
+          <TableColumn fx:id="colId" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" text="ID" />
+          <TableColumn fx:id="colName" maxWidth="-1.0" minWidth="220.0" prefWidth="220.0" text="Name" />
+          <TableColumn fx:id="colEmail" maxWidth="-1.0" minWidth="220.0" prefWidth="220" text="Email" />
+          <TableColumn fx:id="colMobile" maxWidth="-1.0" minWidth="220.0" prefWidth="220" text="Mobile" />
         </columns>
-      </TableView>
-   </children>
-</Pane>
+         <BorderPane.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+	  </TableView>
+   </center>
+</BorderPane>

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Customer Management GUI
  * @author Joshua Farrell
- * @version 1.10 18 Jul 2022
+ * @version 2.00 20 Jul 2022
  */
 public class CustomerManagementGUI extends Application {
 
