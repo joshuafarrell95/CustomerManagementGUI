@@ -15,7 +15,7 @@ Once CreateJRE.bat is run, this program is able to run independently on any Wind
 
 ## Project Description
 ### Summary
-This application was created as a part of my Certificate IV in Information Technology (Programming) at South Metropolitan TAFE in 2022. The program is written using a Model-View-Controller pattern which ensures that functionality of the program is separated between different elements.
+This application was created as a part of my Certificate IV in Information Technology (Programming) at South Metropolitan TAFE in 2022. I have subsequently reviewed this application in 2023 by implementing a method that prepopulates the textboxes when a Customer is selected in the table. I have also improved the Graphical User Interface by streamlining the textboxes and buttons, which involved reducing the number of text boxes to 5 and moving rarely used buttons to a new menu bar. The program is written using a Model-View-Controller pattern which ensures that functionality of the program is separated between different elements.
 
 This program uses Customer class objects as the model to store an indefinite amount of customers where memory permits with five attributes; Name, Mobile Number and Email (placeholder customer names, emails and mobile numbers were used). This project implements JavaFX as the view which is used to provide a graphical user interface for the program, and JDBC as the controller which is used to manipulate a MySQL database. 
 
