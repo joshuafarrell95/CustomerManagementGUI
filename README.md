@@ -53,5 +53,6 @@ VALUES
 ## Version Control
 | Version | Date        | Reason and comment                                                                                         |
 | ------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| 2.00    | 20 Jun 2023 | Streamlined Graphical User Interface (GUI) textboxes and made GUI elements scale when resizing window      |
 | 1.10    | 18 Jun 2023 | Enabled live table update and added code to add record to update textboxes when record in table is clicked |
 | 1.00    | 22 Nov 2022 | Initial version                                                                                            |
